@@ -6,8 +6,17 @@
   font-weight: 100;
 }
 
+body {
+  overflow: overlay;
+}
+
 ::-webkit-scrollbar {
-  display: none;
+  height: 25vh;
+  background: linear-gradient(transparent 25%, 75%, white);
+}
+
+::-webkit-scrollbar-thumb {
+  background: bottom / 100% no-repeat url('./images/owl.png');
 }
 
 @font-face {
