@@ -1,36 +1,31 @@
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
+import { get_random_color, generate_gradient, SCALER } from './toolbox'
 import { Component } from './flags'
-import { books } from './books.data'
 
-const scaler = 3
-const total_pages = books.reduce((total, book) => (total += book.pages), 0)
-const shelf_width = Math.ceil(total_pages / scaler)
+import { Books } from './Books'
 
-const App = () => {
+import { books as books_list } from './books.data'
+
+const Home = () => {
+  const [books, set_books] = useState([])
+
   useEffect(() => {
-    const scroll = (event) => {
-      event.preventDefault()
-      const increment = event.deltaY > 0 ? 15 : -15
-      window.scrollBy(increment, 0)
-    }
+    let offset_left = 0
 
-    document.addEventListener('wheel', scroll, { passive: false })
-    return () => document.removeEventListener('wheel', scroll)
+    const books = books_list.map((book, index) => {
+      const width = book.pages / SCALER
+      const background = index % 3 ? get_random_color() : generate_gradient()
+      const book_data = { ...book, background, offset_left, width }
+      offset_left += width
+      return book_data
+    })
+
+    set_books(books)
   }, [])
 
-  return (
-    <Books style={{ width: shelf_width }}>
-      {books.map((book, index) => (
-        <Book key={index} style={{ width: `${book.pages / scaler}px` }}>
-          <Title>{book.title}</Title>
-        </Book>
-      ))}
-    </Books>
-  )
+  if (!books.length) return null
+
+  return <Books books={books} />
 }
 
-const Books = Component.h100vh.flex.flex_wrap.section()
-const Book = Component.h100vh.bb.br.pt30.flex.ai_flex_start.jc_center.article()
-const Title = Component.rotate180.wm_v_rl.fw100.fs30.h2()
-
-export default App
+export default Home
