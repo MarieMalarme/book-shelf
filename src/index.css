@@ -2,5 +2,20 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: sans-serif;
+  font-family: 'terminal';
+  font-weight: 100;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+@font-face {
+  font-family: 'terminal';
+  src: url('./fonts/terminal-grotesque.ttf');
+}
+
+@font-face {
+  font-family: 'terminal-open';
+  src: url('./fonts/terminal-grotesque_open.otf');
 }
