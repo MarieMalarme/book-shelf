@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react'
 import { Component } from './flags'
-import { SCALER } from './toolbox'
+import { SCALER, HEADER_WIDTH, OPEN_BOOK_WIDTH } from './toolbox'
 
+import { Header } from './Header'
+import { Footer } from './Footer'
 import { Book } from './Book'
 
 export const Books = ({ books }) => {
@@ -9,6 +11,7 @@ export const Books = ({ books }) => {
 
   const total_pages = books.reduce((total, book) => (total += book.pages), 0)
   const all_books_width = Math.ceil(total_pages / SCALER)
+  const width = all_books_width + HEADER_WIDTH + OPEN_BOOK_WIDTH
 
   useEffect(() => {
     const scroll = (event) => {
@@ -32,21 +35,22 @@ export const Books = ({ books }) => {
   }, [])
 
   return (
-    <Wrapper style={{ minWidth: all_books_width }}>
-      {books.map((book, index) => (
-        <Book
-          key={index}
-          book={book}
-          index={index}
-          hovered_book={hovered_book}
-          set_hovered_book={set_hovered_book}
-        />
-      ))}
-      <Placeholder>Thanks for checking out our library !</Placeholder>
+    <Wrapper style={{ minWidth: width }}>
+      <Header />
+      <Wrapper>
+        {books.map((book, index) => (
+          <Book
+            key={index}
+            book={book}
+            index={index}
+            hovered_book={hovered_book}
+            set_hovered_book={set_hovered_book}
+          />
+        ))}
+      </Wrapper>
+      <Footer />
     </Wrapper>
   )
 }
 
 const Wrapper = Component.h100vh.flex.section()
-const Placeholder =
-  Component.w90vw.h100vh.flex_shrink0.bg_black.white.pv50.pl65.pr200.fs100.div()

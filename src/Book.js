@@ -1,12 +1,14 @@
 import { useState } from 'react'
 import { Component } from './flags'
+import { HEADER_WIDTH } from './toolbox'
 
 export const Book = ({ book, hovered_book, set_hovered_book, index }) => {
   const [is_hovered, set_is_hovered] = useState(false)
 
   const { id, title, background, offset_left } = book
   const is_selected = hovered_book?.id === id
-  const scroll_to = offset_left - window.innerWidth * 0.15
+  const padding = window.innerWidth * 0.15
+  const scroll_to = offset_left - padding + HEADER_WIDTH
   const width = is_selected ? '70vw' : `${book.width}px`
 
   const handle_click = () => {

@@ -1,5 +1,9 @@
 // global variables
 export const SCALER = 2
+export const TITLE_WIDTH = window.innerWidth * 0.06
+export const INSTRUCTIONS_WIDTH = window.innerWidth * 0.3
+export const HEADER_WIDTH = TITLE_WIDTH + INSTRUCTIONS_WIDTH
+export const OPEN_BOOK_WIDTH = window.innerWidth * 0.7
 
 // functions
 export const random = (min, max) => {

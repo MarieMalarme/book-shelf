@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import { get_random_color, generate_gradient, SCALER } from './toolbox'
-import { Component } from './flags'
 
 import { Books } from './Books'
 
