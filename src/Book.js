@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { Fragment, useState } from 'react'
 import { Component } from './flags'
 import { HEADER_WIDTH } from './toolbox'
 
@@ -27,25 +27,39 @@ export const Book = ({ book, hovered_book, set_hovered_book, index }) => {
       flex_column={is_selected}
       c_pointer={!is_selected}
       jc_center={!is_selected}
-      ph40={is_selected}
+      pv50={is_selected}
+      ph60={is_selected}
     >
       <Title
         pr5={!is_selected && index % 3}
         terminal_open={index % 3}
         rotate180={!is_selected}
         wm_v_rl={!is_selected}
-        fs50={is_selected}
-        mb20={is_selected}
+        fs60={is_selected}
+        mb10={is_selected}
       >
         {title}
       </Title>
       {is_selected && (
-        <Close
-          set_hovered_book={set_hovered_book}
+        <Details
+          book={book}
           set_is_hovered={set_is_hovered}
+          set_hovered_book={set_hovered_book}
         />
       )}
     </Wrapper>
+  )
+}
+
+const Details = ({ book, set_hovered_book, set_is_hovered }) => {
+  return (
+    <Fragment>
+      <Close
+        set_hovered_book={set_hovered_book}
+        set_is_hovered={set_is_hovered}
+      />
+      <Subtitle>— {book.subtitle}</Subtitle>
+    </Fragment>
   )
 }
 
@@ -63,4 +77,5 @@ const Close = ({ set_hovered_book, set_is_hovered }) => (
 const Wrapper =
   Component.anim_all.relative.inline_flex.flex_shrink0.h100vh.pt30.ai_flex_start.article()
 const Title = Component.white.blend_difference.anim_all.fs40.h2()
-const Cross = Component.c_pointer.absolute.r30.t30.div()
+const Subtitle = Component.fs30.h3()
+const Cross = Component.c_pointer.absolute.r30.t30.fs40.div()
