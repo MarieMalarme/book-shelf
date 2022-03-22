@@ -37,6 +37,19 @@ export const Filters = ({ filters, set_filters }) => {
           onScroll={check_is_scrollable}
           className={(can_scroll && scroll_class) || null}
         >
+          <Clear
+            white={filters.length}
+            sticky={filters.length}
+            grey2={!filters.length}
+            bg_black={filters.length}
+            bg_white={!filters.length}
+            c_pointer={filters.length}
+            translate_l20={filters.length}
+            style={{ marginRight: -50 }}
+            onClick={() => set_filters([])}
+          >
+            — Clear all filters
+          </Clear>
           {tags.map((tag, index) => (
             <Filter
               tag={tag}
@@ -65,7 +78,7 @@ const Filter = ({ filters, tag, index, set_filters }) => {
     .sort((a, b) => a.index - b.index)
     .map((filter) => filter.name)
 
-  const top = filters_by_position.indexOf(tag) * TAG_HEIGHT
+  const top = (filters_by_position.indexOf(tag) + 1) * TAG_HEIGHT
   const bottom = filters_by_position.reverse().indexOf(tag) * TAG_HEIGHT
 
   return (
@@ -77,7 +90,7 @@ const Filter = ({ filters, tag, index, set_filters }) => {
       bg_black={is_selected}
       bg_white={!is_selected}
       translate_l20={is_selected}
-      style={{ marginTop: index ? -1 : 0, marginRight: -50, top, bottom }}
+      style={{ marginTop: -1, marginRight: -50, top, bottom }}
       onClick={toggle_filter}
     >
       {tag}
@@ -96,3 +109,4 @@ const Label = Component.fs25.mt5.terminal_open.div()
 const Tags = Component.pl20.ofy_scroll.flex.flex_column.div()
 const Tag =
   Component.capitalize.pv5.pl15.pr60.b_rad20.ba.fs16.c_pointer.hover_bg_black.hover_white.hover_b_grey3.div()
+const Clear = Component.pv5.pl15.pr60.b_rad20.ba.fs16.t0.b_grey3.div()
