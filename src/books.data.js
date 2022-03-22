@@ -1,22 +1,5 @@
 export const categories = ['learning', 'inspiration']
 
-export const tags = [
-  'theory',
-  'practice',
-  'research',
-  'programming',
-  'creative code',
-  'digital art',
-  'processing',
-  'mathematics',
-  'biochemistry',
-  'DIY',
-  'crafts',
-  'art',
-  'dyeing',
-  'color',
-]
-
 export const books = [
   {
     id: 1,
@@ -82,4 +65,8 @@ export const books = [
     category: 'learning',
     tags: ['graphic design', 'creative code', 'research', 'digital art'],
   },
+]
+
+export const tags = [
+  ...new Set(books.flatMap((book) => book.tags.map((tag) => tag))),
 ]

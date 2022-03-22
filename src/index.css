@@ -16,7 +16,41 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: bottom / 100% no-repeat url('./images/owl.png');
+  background: bottom / contain no-repeat url('./images/owl.png');
+}
+
+#filters.scroll-arrow.top::before,
+#filters.scroll-arrow.bottom::after {
+  line-height: 25px;
+  background: white;
+  text-align: center;
+  align-self: center;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  width: 40px;
+  height: 40px;
+  font-size: 22px;
+  margin-left: 10px;
+  border-radius: 20px;
+  animation: fade-in 0.5s ease-in-out;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.7);
+}
+
+#filters.scroll-arrow.top::before {
+  top: 60px;
+  content: '↥';
+}
+
+#filters.scroll-arrow.bottom::after {
+  bottom: 10px;
+  content: '↧';
+}
+
+#filters::-webkit-scrollbar {
+  display: none;
 }
 
 @font-face {
@@ -27,4 +61,21 @@ body {
 @font-face {
   font-family: 'terminal-open';
   src: url('./fonts/terminal-grotesque_open.otf');
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.capitalize:first-letter {
+  text-transform: uppercase;
+}
+
+.hover_b_grey3:hover {
+  border-color: var(--grey3);
 }

@@ -15,7 +15,7 @@ export const Header = () => (
       using this cute owl as a scrollbar down there!
       <br />
       <br />
-      ↓↓↓
+      <Arrows>↧↧↧</Arrows>
     </Instructions>
   </Fragment>
 )
@@ -25,3 +25,4 @@ const Word =
   Component.text_upright.wm_v_lr.bg_white.terminal_open.flex.ai_center.pt35.pb20.fs70.b_rad40.ba.bw4.w6vw.h50vh.flex_shrink0.h1()
 const Instructions =
   Component.bg_black.white.pa50.fs40.w30vw.sticky.l0.b_rad40.flex_shrink0.h100vh.div()
+const Arrows = Component.fs45.span()

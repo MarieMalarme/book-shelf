@@ -27,14 +27,18 @@ export const Book = ({ book, hovered_book, set_hovered_book, index }) => {
       flex_column={is_selected}
       c_pointer={!is_selected}
       jc_center={!is_selected}
+      pb20vh={!is_selected}
       pv50={is_selected}
       ph60={is_selected}
     >
       <Title
         pr5={!is_selected && index % 3}
         terminal_open={index % 3}
+        text_right={!is_selected}
         rotate180={!is_selected}
         wm_v_rl={!is_selected}
+        lh45={!is_selected}
+        lh60={is_selected}
         fs60={is_selected}
         mb10={is_selected}
       >
@@ -58,7 +62,7 @@ const Details = ({ book, set_hovered_book, set_is_hovered }) => {
         set_hovered_book={set_hovered_book}
         set_is_hovered={set_is_hovered}
       />
-      <Subtitle>— {book.subtitle}</Subtitle>
+      {book.subtitle && <Subtitle>— {book.subtitle}</Subtitle>}
     </Fragment>
   )
 }
