@@ -5,7 +5,7 @@ atomizify({
     w6vw: 'width: 6vw',
     w30vw: 'width: 30vw',
     w40vw: 'width: 40vw',
-    max_h75p: 'max-height: 75%',
+    h75vh: 'height: 75vh',
     fs45: 'font-size: 45px',
     lh45: 'line-height: 45px',
     lh60: 'line-height: 60px',
